@@ -1,0 +1,90 @@
+# Heartopia Auto-Painter Configuration
+
+image:
+  # Canvas size for output image (recommended: 512, 1024)
+  canvas_size: 512
+  
+  # Edge detection thresholds (Canny algorithm)
+  edge_threshold_min: 50
+  edge_threshold_max: 150
+  
+  # Gaussian blur kernel size (must be odd: 3, 5, 7, 9)
+  blur_kernel: 5
+  
+  # Image quality settings
+  jpeg_quality: 95
+  upscale_factor: 1.0  # 1.0 = no upscaling, 2.0 = 2x upscaling
+
+ai:
+  # Enable CUDA GPU acceleration
+  use_cuda: true
+  
+  # AI Model settings
+  anime_gan_model: 'animegan2'  # Options: animegan2, animegan3, cartoongan
+  line_art_model: 'lineart'     # Deep learning line art extractor
+  
+  # Model inference settings
+  model_precision: 'fp32'       # fp32 or fp16 for faster inference
+  batch_size: 1
+  num_workers: 4
+
+heartopia:
+  # Heartopia game canvas settings
+  canvas_width: 512
+  canvas_height: 512
+  
+  # Painting optimization
+  optimize_for_painting: true
+  remove_background: false      # Set white background to transparent
+  enhance_edges: true           # Enhance line clarity
+  
+  # Dithering options for color reduction (if needed)
+  use_dithering: false
+  color_palette_size: 256
+
+automation:
+  # PyAutoGUI settings
+  click_speed: 0.05             # Seconds between clicks (0.05 = 20 clicks/sec)
+  movement_speed: 0.02          # Mouse movement speed
+  pause_before_start: 3         # Seconds to wait before starting automation
+  
+  # Detection and safety
+  detection_sensitivity: 0.8    # Color detection threshold (0-1)
+  safe_mode: true               # Prevent automation if game window not found
+  verify_clicks: true           # Verify each click was successful
+  
+  # Batch processing
+  batch_size: 5                 # Process multiple images
+  delay_between_batches: 60     # Seconds between batches (avoid detection)
+
+logging:
+  # Logging settings
+  level: 'INFO'                 # DEBUG, INFO, WARNING, ERROR
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file: 'logs/heartopia_painter.log'
+  console: true
+
+performance:
+  # Performance optimization
+  max_workers: 4                # Parallel processing threads
+  cache_models: true            # Cache loaded models in memory
+  optimize_memory: false        # Trade memory for speed
+  
+  # Timeout settings (seconds)
+  model_load_timeout: 30
+  processing_timeout: 300
+  automation_timeout: 600
+
+# Advanced settings (expert users only)
+advanced:
+  use_morphological_ops: true   # Morphological operations for line cleaning
+  morphological_kernel_size: 3
+  
+  # Contrast enhancement
+  use_clahe: true               # Contrast Limited Adaptive Histogram Equalization
+  clahe_clip_limit: 2.0
+  clahe_tile_size: 8
+  
+  # Custom preprocessing pipeline
+  custom_preprocessing: false
+  preprocessing_chain: []
